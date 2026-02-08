@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ammu ❤️ Be My Valentine</title>
+
+<style>
+body {
+    background: linear-gradient(#ffe6f0, #fff);
+    font-family: 'Comic Sans MS', cursive;
+    text-align: center;
+    overflow: hidden;
+}
+
+h1 {
+    color: #ff2e63;
+    margin-top: 40px;
+    font-size: 2.6em;
+}
+
+img {
+    width: 260px;
+    margin: 20px;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+}
+
+#yesBtn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#noBtn {
+    background-color: #f44336;
+    color: white;
+    position: absolute;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    color: pink;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="question">Ammu ❤️ will you be my Valentine? 💖</h1>
+
+<img id="minion" 
+src="https://media1.giphy.com/media/v1.Y2lkPTZjMDliOTUyZWU2bWVjNHR2dnlkdjN3Mmt5ZWM2c2Y1Mml0YWpobmR4a3l2OWYzNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/m6OomwWCojfS8/giphy.gif">
+
+<br>
+
+<button id="yesBtn" onclick="yesClicked()">Yes 💕</button>
+<button id="noBtn" onclick="noClicked()">No 😢</button>
+
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3">
+</audio>
+
+<script>
+let noCount = 0;
+
+const sadTexts = [
+    "Ammu please 🥺",
+    "Minion is crying 😭",
+    "Think again my love 💔",
+    "You can’t say no 😢",
+    "Last chance Ammu ❤️"
+];
+
+function noClicked() {
+    noCount++;
+    document.getElementById("question").innerText =
+        sadTexts[noCount % sadTexts.length];
+
+    document.getElementById("minion").src =
+        "https://media0.giphy.com/media/v1.Y2lkPTZjMDliOTUydmVjYnlmOTIwZjRzZ3pqcDFwcnEzbW9nMngzdzUxZXNoa3k3MmZoZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SqmkZ5IdwzTP2/giphy.gif";
+
+    document.getElementById("yesBtn").style.fontSize =
+        (20 + noCount * 4) + "px";
+}
+
+function moveNo() {
+    const noBtn = document.getElementById("noBtn");
+    noBtn.style.top = Math.random() * 80 + "%";
+    noBtn.style.left = Math.random() * 80 + "%";
+}
+
+function yesClicked() {
+    document.getElementById("question").innerHTML =
+        "YAYYY 💖 Ammu ❤️<br>Happy Valentine’s Day! 🌹<br>I love you 😘";
+
+    document.getElementById("minion").src =
+        "https://media4.giphy.com/media/v1.Y2lkPTZjMDliOTUyMmlneWVqZHg3YjRpbXlidmRwYndreW04MDY4Z2x6cnc4cnY1c3BrcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qu0bELISAinhwnTlqG/giphy.gif";
+
+    document.getElementById("yesBtn").style.display = "none";
+    document.getElementById("noBtn").style.display = "none";
+}
+
+// Create floating hearts
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 30 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+}, 400);
+</script>
+
+</body>
+</html>
